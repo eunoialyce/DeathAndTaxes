@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>คำนวณภาษี</title>
+</head>
+<body>
+    <center><h1 style="background-color: aqua;">คำนวณภาษี</h1>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkF0VLeefg0PnhHO_319FgrI0teVQ5OAn8cQ&usqp=CAU">
+    <p>ภาษี (อังกฤษ: tax) เป็นเงินหรือทรัพย์สิน ที่เรียกเก็บจากประชาชนโดยองค์กรรัฐบาล เพื่อนำไปเป็นทุนในการใช้จ่ายของรัฐบาล <br>
+        และรายจ่ายสาธารณะต่างๆ และเป็นภาระหน้าที่สำหรับพลเมืองที่จะต้องเสียภาษีอากรในประเทศไทย และมีบทลงโทษสำหรับผู้หลีกเลี่ยงภาษี<br>
+        วัตถุประสงค์หลักของภาษี คือ เพื่อเป็นเงินทุนสำหรับการใช้จ่ายสาธารณะ เช่น การก่อสร้างระบบโครงสร้างพื้นฐาน การให้บริการด้านสาธารณสุข<br> 
+        การศึกษา ความปลอดภัยและความมั่นคงของประชาชน รวมถึงระบบคุ้มครองทางสังคม</p>>
+    
+    <form>
+        <label for="income">เงินได้:</label>
+        <input type="number" id="income" name="income"><br><br>
+        
+        <label for="expenses">ค่าใช้จ่าย:</label>
+        <input type="number" id="expenses" name="expenses"><br><br>
+        
+        <label for="deductions">ค่าลดหย่อน:</label>
+        <input type="number" id="deductions" name="deductions"><br><br>
+        
+        <button type="button" onclick="calculateTax()">คำนวณภาษี</button>
+    </form>
+    
+    <p id="taxResult"></p></center>>
+    
+    <script>
+        function calculateTax() {
+            var income = parseFloat(document.getElementById("income").value);
+            var expenses = parseFloat(document.getElementById("expenses").value);
+            var deductions = parseFloat(document.getElementById("deductions").value);
+            
+            var x = income - expenses - deductions;
+            var z;
+            
+            if (x > 5000000) {
+                z = (((x - 5000000) * 0.35) + 1265000);
+            } else if (2000001 < x && x <= 5000000) {
+                z = (((x - 2000000) * 0.3) + 365000);
+            } else if (1000001 < x && x <= 2000000) {
+                z = (((x - 1000000) * 0.25) + 115000);
+            } else if (750001 < x && x <= 1000000) {
+                z = (((x - 750000) * 0.2) + 65000);
+            } else if (500001 < x && x <= 750000) {
+                z = (((x - 500000) * 0.15) + 27500);
+            } else if (300001 < x && x <= 500000) {
+                z = (((x - 300000) * 0.1) + 7500);
+            } else if (150000 < x && x <= 300000) {
+                z = (((x - 150000) * 0.05) + 0);
+            } else {
+                z = 0;
+            }
+            
+            document.getElementById("taxResult").innerHTML = "ภาษีที่ต้องชำระ: " + z.toFixed(2);
+        }
+    </script>
+</body>
+</html>
