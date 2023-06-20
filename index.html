@@ -28,7 +28,7 @@
     
     <script>
         function calculateTax() {
-            const taxLevels = {0, 150000, 300000, 500000, 750000, 1000000, 2000000, 5000000};
+            const taxLevels = new Array(0, 150000, 300000, 500000, 750000, 1000000, 2000000, 5000000);
             
             var income = parseFloat(document.getElementById("income").value);
             var expenses = parseFloat(document.getElementById("expenses").value);
@@ -47,6 +47,8 @@
             var taxPercentage = level * 0.05;
             var taxAddition = taxLevels[level - 1] * ((level - 1) * 0.05);
             tax = ((netIncome - taxLevels[level]) * taxPercentage) + taxAddition;
+
+            window.alert(taxPercentage, taxAddition);
             
             document.getElementById("taxResult").innerHTML = "ภาษีที่ต้องชำระ: " + z.toFixed(2);
         }
