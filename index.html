@@ -40,17 +40,15 @@
             
             for (let curLevel = 0; curLevel < taxLevels.length; curLevel++) {
                 if (netIncome > taxLevels[curLevel]) {
-                   level = taxLevels[curLevel];
+                   level = curLevel;
                 }
             }
-            
+                        
             var taxPercentage = level * 0.05;
             var taxAddition = taxLevels[level - 1] * ((level - 1) * 0.05);
             tax = ((netIncome - taxLevels[level]) * taxPercentage) + taxAddition;
-
-            window.alert(taxPercentage, taxAddition);
             
-            document.getElementById("taxResult").innerHTML = "ภาษีที่ต้องชำระ: " + z.toFixed(2);
+            document.getElementById("taxResult").innerHTML = "ภาษีที่ต้องชำระ: " + tax.toFixed(2);
         }
     </script>
 </body>
