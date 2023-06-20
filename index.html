@@ -28,30 +28,25 @@
     
     <script>
         function calculateTax() {
+            const taxLevels = {0, 150000, 300000, 500000, 750000, 1000000, 2000000, 5000000};
+            
             var income = parseFloat(document.getElementById("income").value);
             var expenses = parseFloat(document.getElementById("expenses").value);
             var deductions = parseFloat(document.getElementById("deductions").value);
             
-            var x = income - expenses - deductions;
-            var z;
+            var netIncome = income - expenses - deductions;
+            var tax;
+            var level;
             
-            if (x > 5000000) {
-                z = (((x - 5000000) * 0.35) + 1265000);
-            } else if (2000001 < x && x <= 5000000) {
-                z = (((x - 2000000) * 0.3) + 365000);
-            } else if (1000001 < x && x <= 2000000) {
-                z = (((x - 1000000) * 0.25) + 115000);
-            } else if (750001 < x && x <= 1000000) {
-                z = (((x - 750000) * 0.2) + 65000);
-            } else if (500001 < x && x <= 750000) {
-                z = (((x - 500000) * 0.15) + 27500);
-            } else if (300001 < x && x <= 500000) {
-                z = (((x - 300000) * 0.1) + 7500);
-            } else if (150000 < x && x <= 300000) {
-                z = (((x - 150000) * 0.05) + 0);
-            } else {
-                z = 0;
+            for (let curLevel = 0; curLevel < taxLevels.length; curLevel++) {
+                if (netIncome > taxLevels[curLevel]) {
+                   level = taxLevels[curLevel];
+                }
             }
+            
+            var taxPercentage = level * 0.05;
+            var taxAddition = taxLevels[level - 1] * ((level - 1) * 0.05);
+            tax = ((netIncome - taxLevels[level]) * taxPercentage) + taxAddition;
             
             document.getElementById("taxResult").innerHTML = "ภาษีที่ต้องชำระ: " + z.toFixed(2);
         }
