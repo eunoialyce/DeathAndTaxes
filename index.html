@@ -47,6 +47,8 @@
             var taxPercentage = level * 0.05;
             var taxAddition = taxLevels[level - 1] * ((level - 1) * 0.05);
             tax = ((netIncome - taxLevels[level]) * taxPercentage) + taxAddition;
+
+            window.alert(level, taxAddition);
             
             document.getElementById("taxResult").innerHTML = "ภาษีที่ต้องชำระ: " + z.toFixed(2);
         }
